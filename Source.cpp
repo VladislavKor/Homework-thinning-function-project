@@ -121,15 +121,18 @@ void thinning2(vector<pair<int, int>>& data, int n)
 
 	int s = data.size();
 	int counter = 0;
+	bool flagFirst = true;
 
 	for (size_t i = 1; i < s - 1; i++)
 	{
-		if (i == 1)
+		if (i == 1 && flagFirst)
 		{
 			if ((data[i].second == data[i - 1].second))
 				counter = 2;
 			else
 				counter = 1;
+
+			flagFirst = false;
 		}
 		else
 		{
@@ -144,8 +147,8 @@ void thinning2(vector<pair<int, int>>& data, int n)
 				data.erase(data.begin() + i);
 				s--;
 				i--;
-				counter++;
 			}
 		}
+		counter++;
 	}
 }
